@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## The Inverse of a Matrix Cache
 
 ## Provides a special inverse matrix object that can be cached.
@@ -39,4 +40,34 @@ cacheSolve <- function(x, ...) {
       x$setInverse(opp)
       ## The matrix should be returned.
       opp
+=======
+makeCacheMatrix <- function(x = matrix()) {
+        ini <- NULL
+        set <- function(y) {
+                x <<- y
+                ini <<- NULL
+        }
+        get <- function() x
+        set Inverse <- function(inverse) ini <<- inverse
+        getInverse <- function() inithome
+        list(set = set,
+             get = get,
+             setInverse = setInverse,
+             getInverse = getInverse)
+}
+
+
+
+cacheSolve <- function(x, ...) {
+       
+        ini <- x$getInverse()
+        if (!is.null(ini)) {
+                message("getting cached data")
+                return(ini)
+        }
+        mat <- x$get()
+        ini <- solve(mat, ...)
+        x$setInverse(ini)
+        ini
+>>>>>>> 8571e0888148f89880490894bc3261a89f692e09
 }
